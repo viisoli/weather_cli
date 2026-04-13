@@ -1,9 +1,14 @@
 # WeatherCli 🌤
 
-Aplicativo de linha de comando em Elixir que exibe a **temperatura atual** de qualquer cidade do mundo.
+Aplicativo de linha de comando em Elixir que exibe o **clima atual** ou a **previsão dos próximos 5 dias** de qualquer cidade do mundo.
 
 Usa a [Open-Meteo](https://open-meteo.com/) — gratuita, sem cadastro e sem API key.
 
+---
+
+## Exemplos de saída
+
+**Clima atual**
 ```
 🔍 Buscando clima para "São Paulo"...
 
@@ -22,6 +27,31 @@ Usa a [Open-Meteo](https://open-meteo.com/) — gratuita, sem cadastro e sem API
 ════════════════════════════════════════
 ```
 
+**Previsão de 5 dias**
+```
+🔍 Buscando previsão para "São Paulo"...
+
+╔══════════════════════════════════════╗
+║      PREVISÃO — PRÓXIMOS 5 DIAS      ║
+╚══════════════════════════════════════╝
+
+  📍 São Paulo, Brasil
+
+  ────────────────────────────────────────
+  📅 Hoje     13 Abr
+     ☁️  Nublado
+     🌡  Máx 28.0°C  ·  Mín 19.0°C
+     🌧  Chuva 40% ██░░░  ·  💨 18.0 km/h
+
+  ────────────────────────────────────────
+  📅 Amanhã   14 Abr
+     ☁️  Chuva leve
+     🌡  Máx 25.0°C  ·  Mín 17.5°C
+     🌧  Chuva 70% ███░░  ·  💨 22.0 km/h
+
+  ════════════════════════════════════════
+```
+
 ---
 
 ## Pré-requisitos
@@ -36,7 +66,7 @@ Usa a [Open-Meteo](https://open-meteo.com/) — gratuita, sem cadastro e sem API
 ## Instalação
 
 ```bash
-git clone https://github.com/seu-usuario/weather_cli.git
+git clone https://github.com/viisoli/weather_cli.git
 cd weather_cli
 mix deps.get
 ```
@@ -46,11 +76,18 @@ mix deps.get
 ## Como usar
 
 ```bash
-mix weather "São Paulo"     # consulta direta
-mix weather                 # modo interativo (solicita a cidade)
+# Clima atual
+mix weather "São Paulo"
+mix weather                   # modo interativo
+
+# Previsão dos próximos 5 dias
+mix forecast "São Paulo"
+mix forecast                  # modo interativo
 ```
 
 O app aceita nomes de cidades em português ou inglês.
+
+Os resultados ficam em **cache por 1 hora**. Se a conexão cair, os últimos dados disponíveis são exibidos com um aviso de quando foram obtidos.
 
 ---
 
