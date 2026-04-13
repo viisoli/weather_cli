@@ -1,12 +1,14 @@
 defmodule WeatherCliTest do
   use ExUnit.Case, async: true
 
-  describe "WeatherCli" do
-    test "módulo exporta run/0 e run/1 via argumento padrão" do
+  describe "WeatherCli public API" do
+    test "run/1 delega para CLI.run/1" do
+      # Verifica que o módulo raiz expõe as funções documentadas
       fns = WeatherCli.__info__(:functions)
-      arities = fns |> Enum.filter(fn {name, _} -> name == :run end) |> Enum.map(&elem(&1, 1))
-      assert 0 in arities
-      assert 1 in arities
+      assert {:run, 0} in fns
+      assert {:run, 1} in fns
+      assert {:run_forecast, 0} in fns
+      assert {:run_forecast, 1} in fns
     end
   end
 end

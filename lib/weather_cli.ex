@@ -16,9 +16,16 @@ defmodule WeatherCli do
   """
 
   @doc """
-  Ponto de entrada principal. Aceita um nome de cidade como argumento opcional.
-  Se não for fornecido, solicita ao usuário via prompt interativo.
+  Exibe o **clima atual** para a cidade informada.
+  Se nenhuma cidade for fornecida, solicita via prompt interativo.
   """
   @spec run(String.t() | nil) :: :ok
   def run(city \\ nil), do: WeatherCli.CLI.run(city)
+
+  @doc """
+  Exibe a **previsão dos próximos 5 dias** para a cidade informada.
+  Se nenhuma cidade for fornecida, solicita via prompt interativo.
+  """
+  @spec run_forecast(String.t() | nil) :: :ok
+  def run_forecast(city \\ nil), do: WeatherCli.CLI.run_forecast(city)
 end

@@ -36,6 +36,9 @@ defmodule WeatherCli.Geocoding do
       {:ok, %{status: status}} ->
         {:error, "Erro na API de geocodificação (HTTP #{status})."}
 
+      {:error, %{reason: :timeout}} ->
+        {:error, "A API de geocodificação demorou demais para responder. Tente novamente."}
+
       {:error, reason} ->
         {:error, "Falha de conexão: #{inspect(reason)}"}
     end

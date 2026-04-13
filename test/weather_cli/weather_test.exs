@@ -27,6 +27,22 @@ defmodule WeatherCli.WeatherTest do
     test "string → fallback genérico" do
       assert Weather.describe_condition("sunny") == "Condição desconhecida"
     end
+
+    test "códigos de garoa/chuva congelante estão mapeados" do
+      assert Weather.describe_condition(56) =~ "congelante"
+      assert Weather.describe_condition(57) =~ "congelante"
+      assert Weather.describe_condition(66) =~ "congelante"
+      assert Weather.describe_condition(67) =~ "congelante"
+    end
+
+    test "código 77 → grãos de neve" do
+      assert Weather.describe_condition(77) == "Grãos de neve"
+    end
+
+    test "códigos de pancadas de neve estão mapeados" do
+      assert Weather.describe_condition(85) =~ "neve"
+      assert Weather.describe_condition(86) =~ "neve"
+    end
   end
 
   describe "fetch/2 — validação de argumentos" do
